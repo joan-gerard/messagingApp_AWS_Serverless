@@ -40,33 +40,6 @@ const functions: AWS['functions'] = {
       },
     ],
   },
-  bookFlight: {
-    handler: 'src/functions/bookFlight/index.handler',
-    events: [
-      {
-        http: {
-          method: 'post',
-          path: 'flights/{flightID}',
-          cors: corsSettings,
-          authorizer,
-        },
-      },
-    ],
-  },
-
-  processProductCSV: {
-    handler: 'src/functions/processProductCSV/index.handler',
-    events: [
-      {
-        s3: {
-          bucket: '${self:custom.assetBucketName}',
-          event: 's3:ObjectCreated:*',
-          rules: [{ prefix: 'products/' }, { suffix: '.csv' }],
-          existing: true,
-        },
-      },
-    ],
-  },
 };
 
 export default functions;
