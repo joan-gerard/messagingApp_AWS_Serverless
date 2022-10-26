@@ -43,6 +43,7 @@ const serverlessConfiguration: AWS = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       singleTable: '${self:custom.tables.singleTable}',
       region: '${self:provider.region}',
+      COGNITO_POOL_ID: { Ref: 'CognitoUserPool' },
     },
     iamRoleStatements: [
       {
@@ -67,13 +68,13 @@ const serverlessConfiguration: AWS = {
       DynamoTableName: {
         Value: '${self:custom.tables.singleTable}',
         Export: {
-          Name: 'DynamoTableName',
+          Name: 'MessagingAppDynamoTableName',
         },
       },
       UserPoolId: {
         Value: { Ref: 'CognitoUserPool' },
         Export: {
-          Name: 'UserPoolId',
+          Name: 'MessagingAppUserPoolId',
         },
       },
     },
