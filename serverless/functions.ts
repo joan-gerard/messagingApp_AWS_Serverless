@@ -32,7 +32,7 @@ const functions: AWS['functions'] = {
     events: [
       {
         websocket: {
-          route: "$connect"
+          route: '$connect',
         },
       },
     ],
@@ -42,7 +42,17 @@ const functions: AWS['functions'] = {
     events: [
       {
         websocket: {
-          route: "$disconnect"
+          route: '$disconnect',
+        },
+      },
+    ],
+  },
+  websocketCreateGroup: {
+    handler: 'src/functions/websocketCreateGroup/index.handler',
+    events: [
+      {
+        websocket: {
+          route: 'createGroup',
         },
       },
     ],
