@@ -8,6 +8,10 @@ import {
 export const websocket = {
   createClient: ({ domainName, stage }: { domainName: string; stage: string }) => {
     const endpoint = `https://${domainName}/${stage}`;
+
+    console.log({ endpoint });
+
+    console.log('IN CREATE CLIENT');
     return new ApiGatewayManagementApiClient({
       endpoint,
     });
@@ -39,6 +43,9 @@ export const websocket = {
       ConnectionId: connectionId,
     };
     const command = new PostToConnectionCommand(postParams);
+    console.log({ wsClient });
+    console.log({ postParams });
+    console.log({ command });
 
     return wsClient.send(command);
   },
