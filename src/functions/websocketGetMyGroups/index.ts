@@ -1,6 +1,5 @@
 import { formatJSONResponse } from '@libs/APIResponses';
 import Dynamo from '@libs/Dynamo';
-import * as Cognito from '@libs/Cognito';
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { websocket } from '@libs/Websocket';
 

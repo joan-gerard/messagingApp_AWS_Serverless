@@ -39,3 +39,13 @@ interface MessageRecord {
   message: string;
   date: number;
 }
+
+interface JoinGroupRequestRecord {
+  id: string;
+  pk: string; // groupId
+  sk: string; // joinRequest#${userId}
+
+  userId: string;
+  groupId: string;
+  userName: string;
+}
