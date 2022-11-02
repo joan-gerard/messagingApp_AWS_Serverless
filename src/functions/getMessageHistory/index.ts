@@ -6,6 +6,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
   try {
     const tableName = process.env.singleTable;
     const { groupId } = event.pathParameters;
+    const { beforedate, startid } = event.queryStringParameters || {};
     const userId = event.requestContext.authorizer?.claims?.sub;
 
     // querying for old messages on the group
@@ -17,6 +18,14 @@ export const handler = async (event: APIGatewayProxyEvent) => {
       index: 'index1',
       limit: 20,
       scanForwards: false,
+      startFromRecord:
+        beforedate && startid
+          ? {
+              pk: groupId,
+              sk: `message#${beforedate}`,
+              id: startid,
+            }
+          : undefined,
     });
     // reformat messages
     const formattedMessages = messages.map(({ pk, sk, ...rest }) => {
