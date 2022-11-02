@@ -73,6 +73,11 @@ export const handler = async (event: APIGatewayProxyEvent) => {
     });
   } catch (error) {
     console.log(error);
-    return;
+    return formatJSONResponse({
+      body: {
+        message: error.message,
+      },
+      statusCode: 500,
+    });
   }
 };

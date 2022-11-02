@@ -100,6 +100,19 @@ const functions: AWS['functions'] = {
       },
     ],
   },
+  getMessageHistory: {
+    handler: 'src/functions/getMessageHistory/index.handler',
+    events: [
+      {
+        http: {
+          method: 'get',
+          path: 'messages/{groupId}',
+          authorizer,
+          cors: true,
+        },
+      },
+    ],
+  },
   websocketHandleJoinRequests: {
     handler: 'src/functions/websocketHandleJoinRequests/index.handler',
     events: [
