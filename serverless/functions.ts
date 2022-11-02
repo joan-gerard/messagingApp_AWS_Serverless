@@ -100,6 +100,21 @@ const functions: AWS['functions'] = {
       },
     ],
   },
+  websocketHandleJoinRequests: {
+    handler: 'src/functions/websocketHandleJoinRequests/index.handler',
+    events: [
+      {
+        websocket: {
+          route: 'acceptJoinRequest',
+        },
+      },
+      {
+        websocket: {
+          route: 'rejectJoinRequest',
+        },
+      },
+    ],
+  },
 };
 
 export default functions;
