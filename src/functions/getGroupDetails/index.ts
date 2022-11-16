@@ -47,11 +47,14 @@ export const handler = async (event: APIGatewayProxyEvent) => {
       }),
     ]);
 
+    console.log({groupMembers})
+
     const groupResponse: GroupDetailsResponse = {
       ...groupRecord,
-      members: groupMembers.map(({ userId, userName }) => ({
+      members: groupMembers.map(({ userId, userName, family_name }) => ({
         userId,
         userName,
+        family_name
       })),
     };
 

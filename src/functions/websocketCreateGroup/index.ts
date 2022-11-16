@@ -28,7 +28,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
     }
 
     // get user who makes the request
-    const { userId, userName } = await Dynamo.get<UserConnectionRecord>({
+    const { userId, userName, family_name } = await Dynamo.get<UserConnectionRecord>({
       pkValue: connectionId,
       tableName,
     });
@@ -56,6 +56,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
         groupId,
         userName,
         groupName,
+        family_name,
       };
       await Dynamo.write({ data, tableName });
     }

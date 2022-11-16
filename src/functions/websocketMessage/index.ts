@@ -21,7 +21,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
         stage,
         message: JSON.stringify({
           message: '"message" and "groupID" required',
-          type: 'error',
+          type: 'err',
         }),
       });
       return formatJSONResponse({
@@ -50,7 +50,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
         stage,
         message: JSON.stringify({
           message: 'You are not part of this group',
-          type: 'error',
+          type: 'err',
         }),
       });
       return formatJSONResponse({

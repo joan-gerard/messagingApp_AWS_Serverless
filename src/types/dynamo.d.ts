@@ -4,6 +4,7 @@ interface UserConnectionRecord {
   sk: string;
 
   userName: string;
+  family_name: string;
   userId: string;
   domainName: string;
   stage: string;
@@ -26,6 +27,7 @@ interface UserGroupRecord {
   groupId: string;
   userName: string;
   groupName: string;
+  family_name: string;
 }
 
 interface MessageRecord {

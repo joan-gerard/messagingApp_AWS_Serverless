@@ -11,6 +11,7 @@ export interface ClaimVerifyRequest {
 export interface ClaimVerifyResult {
   readonly userName: string;
   readonly userId: string;
+  readonly family_name: string;
 
   readonly clientId: string;
   readonly isValid: boolean;
@@ -50,6 +51,7 @@ interface Claim {
   client_id: string;
   'cognito:username': string;
   email: string;
+  family_name: string;
 }
 
 const cognitoPoolId = process.env.COGNITO_POOL_ID || '';
@@ -110,10 +112,18 @@ export const verifyToken = async (
       userName: claim.email,
       userId: claim['cognito:username'],
       clientId: claim.client_id,
+      family_name: claim.family_name,
       isValid: true,
     };
   } catch (error) {
-    result = { userName: '', userId: '', clientId: '', error, isValid: false };
+    result = {
+      family_name: '',
+      userName: '',
+      userId: '',
+      clientId: '',
+      error,
+      isValid: false,
+    };
   }
   return result;
 };

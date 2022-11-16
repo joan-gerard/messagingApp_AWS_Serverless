@@ -16,7 +16,9 @@ export const handler = async (event: APIGatewayProxyEvent) => {
       return authFailed({ connectionId, domainName, stage });
     }
 
-    const { userName, userId, isValid, error } = await Cognito.verifyToken({ token });
+    const { userName, userId, isValid, error, family_name } = await Cognito.verifyToken({ token });
+
+    console.log({ userName, userId, isValid, error, family_name })
 
     if (!isValid || error) {
       console.log(error);
@@ -31,6 +33,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
       userId,
       domainName,
       stage,
+      family_name,
     };
 
     await Dynamo.write({ data, tableName });
