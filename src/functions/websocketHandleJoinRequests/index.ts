@@ -11,7 +11,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
     const { connectionId, domainName, stage } = event.requestContext;
 
     // get details from request
-    const { groupId, requestId, userId, action } = JSON.parse(event.body);
+    const { groupId, requestId, userId, action, family_name } = JSON.parse(event.body);
     if (!groupId || !requestId || !userId || !action) {
       await websocket.send({
         connectionId,
@@ -24,6 +24,11 @@ export const handler = async (event: APIGatewayProxyEvent) => {
       });
       return;
     }
+
+    console.log({groupId, requestId, userId, action, family_name})
+    console.log('THE EVENT', event)
+    console.log('THE EVENT BODY', event.body)
+    console.log('PARSE BODY', JSON.parse(event.body))
 
     // get: groupRequest, getAdminConnection, group, userGroupConnection
     const groupRecordPromise = Dynamo.get<GroupRecord>({
@@ -129,6 +134,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
 
         userId,
         groupId,
+        family_name,
         userName: joinGroupRequest.userName,
         groupName: groupRecord.groupName,
       };

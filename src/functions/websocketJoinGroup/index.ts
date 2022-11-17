@@ -81,7 +81,10 @@ export const handler = async (event: APIGatewayProxyEvent) => {
       userId: userConnection.userId,
       groupId,
       userName: userConnection.userName,
+      family_name: userConnection.family_name
     };
+
+    console.log({data})
 
     await Dynamo.write({ data, tableName });
 

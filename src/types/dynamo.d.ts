@@ -50,4 +50,5 @@ interface JoinGroupRequestRecord {
   userId: string;
   groupId: string;
   userName: string;
+  family_name: string;
 }
